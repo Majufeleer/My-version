@@ -1,0 +1,1071 @@
+:root {
+    /* Paleta de Colores Actualizada */
+    --durazno-fuerte: #FF8C42;    /* Color durazno fuerte para sidebars */
+    --rosita-primary: #E91E63;    /* Rosita para acentos, botones y activos */
+    --rosita-light: #F8BBD0;      /* Rosita claro para fondos suaves */
+    
+    /* Colores de soporte */
+    --gray-dark: #2C3E50;      
+    --white: #FFFFFF;
+    --background-color-page: var(--rosita-light); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; 
+    background-color: var(--background-color-page); 
+    color: var(--gray-dark);
+    line-height: 1.6;
+}
+
+/* ------------------- TOP BANNER (GIF GRANDE) ------------------- */
+.top-banner {
+    position: relative;
+    width: 100%;
+    height: 450px; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5); 
+}
+
+.header-overlay {
+    position: absolute;
+    color: var(--white);
+    text-align: center;
+    z-index: 10;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    padding-top: 15px; 
+}
+
+.header-overlay h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 5px; 
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.header-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+/* ------------------- LAYOUT PRINCIPAL Y BARRAS LATERALES ------------------- */
+.main-container {
+    display: flex;
+    max-width: 1300px;
+    margin: 20px auto; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    min-height: 70vh;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Contenedor para los dos sidebars (vertical) */
+.sidebar-container {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Primer Sidebar - Navegación principal - Color durazno fuerte */
+.sidebar {
+    background: var(--durazno-fuerte);
+    padding: 20px 0;
+    flex: 0 0 auto;
+}
+
+/* Segundo Sidebar - Sabías que... - DEBAJO de la navegación - Color durazno fuerte */
+.sabias-que-sidebar {
+    background: var(--durazno-fuerte);
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: visible;
+}
+
+/* ------------------- ESTILOS PARA MENÚ DESPLEGABLE ------------------- */
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 30px; 
+    color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 5px solid transparent;
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-parent {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-parent.active .nav-arrow {
+    transform: rotate(90deg);
+}
+
+.nav-submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.nav-submenu.active {
+    max-height: 200px;
+}
+
+.sub-item {
+    padding-left: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 0.95rem;
+    border-left: 3px solid transparent;
+}
+
+.sub-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--rosita-primary);
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.25);
+    border-left-color: var(--rosita-primary);
+    color: var(--white); 
+}
+
+.sub-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-left-color: var(--rosita-primary);
+}
+
+/* ------------------- SECCIÓN SABÍAS QUE EN SEGUNDA BARRA LATERAL ------------------- */
+.sabias-que-sidebar-block {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--rosita-primary);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sabias-que-sidebar-block h4 {
+    color: var(--white);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.sabias-que-sidebar-block p {
+    color: var(--white);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+/* Estilos para los bloques Sabías que mejorados */
+.sabias-pregunta {
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.sabias-respuesta {
+    color: var(--white);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.beneficios-lista {
+    margin-top: 10px;
+}
+
+.beneficio-item {
+    color: var(--white);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    padding-left: 5px;
+}
+
+.beneficio-item strong {
+    color: var(--rosita-light);
+    font-weight: 600;
+}
+
+/* ------------------- ÁREA DE CONTENIDO (COMMON) ------------------- */
+.content-area {
+    flex: 1;
+    background: var(--rosita-light); 
+    padding: 40px;
+    min-height: 600px;
+}
+
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* ------------------- IMÁGENES ENCABEZADO INICIO ------------------- */
+.images-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 30px;
+}
+
+.header-side-image {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+/* Título principal sin fondo ni renglón */
+.main-title {
+    color: var(--rosita-primary);
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 0;
+    border-bottom: none; 
+    padding-bottom: 0;
+    text-align: center;
+    background: transparent;
+}
+
+/* ------------------- INICIO (PURA INFORMACIÓN) ------------------- */
+.info-page-content h2 {
+    color: var(--rosita-primary);
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    border-bottom: none; 
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.info-block {
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--rosita-primary);
+}
+
+.info-block h3 {
+    color: var(--rosita-primary);
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--rosita-light);
+    padding-bottom: 8px;
+}
+
+.info-block h4 {
+    color: var(--rosita-primary);
+    font-size: 1.3rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.info-block p {
+    margin-bottom: 15px;
+    text-align: justify;
+    color: var(--gray-dark);
+}
+
+.info-block ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.info-block li {
+    margin-bottom: 8px;
+    text-align: justify;
+    color: var(--gray-dark);
+}
+
+.info-block strong {
+    color: var(--rosita-primary);
+}
+
+/* Estilo para imágenes invocadas: TAMAÑO UNIFORME */
+.image-invocation-container {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.service-invocation-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover; 
+    border-radius: 8px;
+    border: 3px solid var(--rosita-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ------------------- FOOTER ------------------- */
+.main-footer {
+    max-width: 1300px;
+    margin: 0 auto 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--rosita-primary);
+    border-top: 2px solid var(--rosita-primary);
+    background: var(--white);
+    border-radius: 8px;
+}
+
+.main-footer a {
+    color: var(--rosita-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.main-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------- ESTILOS PARA PÁGINAS DE AGENDAR CITA ------------------- */
+.booking-page .service-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    background: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 25px;
+    border: 3px solid var(--rosita-primary);
+}
+
+.service-info h2 {
+    color: var(--rosita-primary);
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.price-tag {
+    background: var(--rosita-primary);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 1.1rem;
+}
+
+.booking-content {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.booking-section h3 {
+    color: var(--rosita-primary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--rosita-light);
+    padding-bottom: 10px;
+}
+
+/* ------------------- FORMULARIOS DE AGENDAR ------------------- */
+.booking-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--rosita-primary);
+    font-size: 1rem;
+}
+
+.form-group input, .form-group select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--rosita-primary);
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+/* ------------------- ESTILOS MEJORADOS PARA CALENDARIO ------------------- */
+input[type="date"] {
+    background-color: var(--white);
+    border: 2px solid var(--rosita-primary);
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--gray-dark);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: var(--rosita-primary);
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.2);
+    background-color: var(--rosita-light);
+}
+
+/* Estilos para el selector de fecha nativo */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: var(--rosita-primary);
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    color: var(--gray-dark);
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: var(--rosita-primary);
+    padding: 0 5px;
+}
+
+/* ------------------- NUEVO ESTILO PARA SELECTOR DE FECHA (COMO LA IMAGEN) ------------------- */
+.date-selector-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.date-selector-label {
+    font-weight: 600;
+    color: var(--rosita-primary);
+    font-size: 1rem;
+}
+
+.date-selector-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.date-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+    background: var(--rosita-light);
+    border: 2px solid var(--rosita-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 70px;
+    text-align: center;
+}
+
+.date-selector:hover {
+    background: var(--rosita-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.date-selector.selected {
+    background: var(--rosita-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.date-day {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.date-month {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.date-year {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.time-slots-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.time-slot {
+    padding: 12px 20px;
+    background: var(--rosita-light);
+    border: 2px solid var(--rosita-primary);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-width: 90px;
+    font-weight: 500;
+    color: var(--rosita-primary);
+}
+
+.time-slot:hover {
+    background: var(--rosita-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.time-slot.selected {
+    background: var(--rosita-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.time-slot.disabled {
+    background: #f0f0f0;
+    color: #aaa;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    padding: 10px;
+    background: #ffebee;
+    border-radius: 4px;
+    border-left: 4px solid #d32f2f;
+}
+
+.no-slots {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+/* BOTONES COLOR ROSA FUERTE */
+.btn-draft, .btn-submit {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    flex: 1;
+    min-width: 160px;
+    background: var(--rosita-primary);
+    color: white;
+}
+
+.btn-draft:hover, .btn-submit:hover {
+    background: #d81b60;
+    transform: translateY(-2px);
+}
+
+/* ------------------- ESTILOS PARA PÁGINA DE CITAS ------------------- */
+.citas-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.citas-header h2 {
+    color: var(--rosita-primary);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.citas-header p {
+    color: var(--gray-dark);
+    font-size: 1.1rem;
+}
+
+.calendar-container {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.weekly-calendar {
+    min-height: 400px;
+}
+
+.calendar-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--rosita-light);
+}
+
+.calendar-header h3 {
+    color: var(--rosita-primary);
+    font-size: 1.4rem;
+}
+
+.week-days {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.day-column {
+    background: var(--rosita-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    min-height: 150px;
+}
+
+.day-header {
+    background: var(--rosita-primary);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 1.1rem;
+}
+
+.appointments-list {
+    padding: 15px;
+    min-height: 100px;
+}
+
+.appointment-item {
+    background: white;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-left: 4px solid var(--rosita-primary);
+}
+
+.apt-time {
+    font-weight: 600;
+    color: var(--rosita-primary);
+    margin-bottom: 3px;
+    font-size: 1rem;
+}
+
+.apt-service {
+    font-size: 0.85rem;
+    color: var(--rosita-primary);
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.apt-name {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: var(--gray-dark);
+}
+
+.apt-status {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.status-paid {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.status-pending {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.no-appointments {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+.no-citas {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    padding: 40px 0;
+}
+
+/* ------------------- ESTILOS PARA PÁGINA DE CONTACTOS ------------------- */
+.contactos-content {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item {
+    background: var(--rosita-light);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--rosita-primary);
+    font-size: 1.1rem;
+    color: var(--rosita-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.whatsapp-text {
+    color: var(--rosita-primary);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.contact-item strong {
+    color: var(--rosita-primary);
+}
+
+/* ------------------- RESPONSIVE MEJORADO PARA SIDEBAR EN MÓVILES ------------------- */
+@media (max-width: 1200px) {
+    .main-container {
+        flex-wrap: wrap;
+    }
+    
+    .sidebar-container {
+        width: 100%;
+        flex-direction: row;
+    }
+    
+    .sidebar {
+        width: 50%;
+    }
+    
+    .sabias-que-sidebar {
+        width: 50%;
+    }
+    
+    .content-area {
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .service-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .service-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .week-days {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .content-area {
+        padding: 20px;
+    }
+    
+    .images-header {
+        gap: 20px;
+    }
+    
+    .header-side-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .sidebar-container {
+        flex-direction: column;
+    }
+    
+    .sidebar, .sabias-que-sidebar {
+        width: 100%;
+    }
+    
+    .date-selector-wrapper {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-overlay h1 {
+        font-size: 2rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .top-banner {
+        height: 300px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn-draft, .btn-submit {
+        width: 100%;
+    }
+    
+    .week-days {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .images-header {
+        gap: 15px;
+    }
+    
+    .header-side-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* MEJORAS PARA SIDEBAR EN MÓVILES - TEXTO MÁS GRANDE */
+    .nav-item {
+        padding: 20px 25px !important;
+        font-size: 1.2rem !important;
+        min-height: 70px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-text {
+        font-size: 1.2rem !important;
+        font-weight: 600;
+    }
+    
+    .nav-arrow {
+        font-size: 1rem !important;
+    }
+    
+    .sub-item {
+        padding: 18px 25px 18px 50px !important;
+        font-size: 1.1rem !important;
+        min-height: 60px;
+    }
+    
+    .nav-submenu.active {
+        max-height: 500px !important;
+    }
+    
+    /* Mejorar los bloques "Sabías que..." */
+    .sabias-que-sidebar-block {
+        padding: 20px !important;
+        margin-bottom: 15px;
+    }
+    
+    .sabias-que-sidebar-block h4 {
+        font-size: 1.1rem !important;
+        line-height: 1.4;
+    }
+    
+    .sabias-que-sidebar-block p {
+        font-size: 1rem !important;
+        line-height: 1.5;
+    }
+    
+    .sabias-pregunta {
+        font-size: 1.1rem !important;
+    }
+    
+    .sabias-respuesta {
+        font-size: 1rem !important;
+    }
+    
+    .beneficio-item {
+        font-size: 0.9rem !important;
+    }
+    
+    .date-selector-wrapper {
+        justify-content: space-between;
+    }
+    
+    .date-selector {
+        min-width: 60px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-overlay h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1rem;
+    }
+    
+    .content-area {
+        padding: 15px;
+    }
+    
+    .info-block {
+        padding: 15px;
+    }
+    
+    .booking-content {
+        padding: 20px;
+    }
+    
+    .time-slots-container {
+        justify-content: center;
+    }
+    
+    .time-slot {
+        min-width: 70px;
+        padding: 10px 15px;
+    }
+    
+    .week-days {
+        grid-template-columns: 1fr;
+    }
+    
+    .images-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header-side-image {
+        width: 100px;
+        height: 100px; 
+    }
+    
+    /* MEJORAS ADICIONALES PARA SIDEBAR EN MÓVILES PEQUEÑOS */
+    .nav-item {
+        padding: 22px 20px !important;
+        font-size: 1.3rem !important;
+        min-height: 75px;
+    }
+    
+    .nav-text {
+        font-size: 1.3rem !important;
+    }
+    
+    .sub-item {
+        padding: 20px 20px 20px 45px !important;
+        font-size: 1.2rem !important;
+        min-height: 65px;
+    }
+    
+    .sabias-que-sidebar-block h4 {
+        font-size: 1.2rem !important;
+    }
+    
+    .sabias-que-sidebar-block p {
+        font-size: 1.1rem !important;
+    }
+    
+    .sabias-pregunta {
+        font-size: 1.2rem !important;
+    }
+    
+    .sabias-respuesta {
+        font-size: 1.1rem !important;
+    }
+    
+    .beneficio-item {
+        font-size: 1rem !important;
+    }
+    
+    .date-selector-wrapper {
+        justify-content: center;
+    }
+    
+    .date-selector {
+        min-width: 55px;
+        padding: 6px 10px;
+    }
+    
+    .date-day {
+        font-size: 1rem;
+    }
+    
+    .date-month {
+        font-size: 0.8rem;
+    }
+    
+    .date-year {
+        font-size: 0.7rem;
+    }
+}

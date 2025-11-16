@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - María Estela Sánchez</title>
+    
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos personalizados -->
+    <style>
+        :root {
+            --primary-color: #9c6f6f;
+            --primary-dark: #7d5959;
+            --primary-darker: #5d4040;
+            --primary-light: #f3e6e6;
+            --primary-lighter: #f9f2f2;
+            --danger-color: #e74c3c;
+            --danger-dark: #c0392b;
+            --success-color: #27ae60;
+            --info-color: #3498db;
+            --warning-color: #f39c12;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, var(--primary-lighter), var(--primary-light));
+            min-height: 100vh;
+            padding-top: 0;
+        }
+
+        .navbar-admin {
+            background-color: var(--primary-darker);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .logo-navbar {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-login {
+            height: 100px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .admin-card {
+            background: var(--primary-light);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            border: none;
+        }
+
+        .admin-header {
+            background: var(--primary-lighter);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-darker);
+            font-weight: 700;
+        }
+
+        .section-title {
+            color: var(--primary-darker);
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .btn-danger:hover {
+            background-color: var(--danger-dark);
+            border-color: var(--danger-dark);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+        }
+
+        .btn-info {
+            background-color: var(--info-color);
+            border-color: var(--info-color);
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            border-color: var(--warning-color);
+        }
+
+        .list-group-item {
+            background-color: var(--primary-lighter);
+            border: 1px solid var(--primary-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 15px;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, var(--primary-lighter), var(--primary-light));
+        }
+
+        .login-card {
+            background: var(--primary-light);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .form-control {
+            background-color: var(--primary-lighter);
+            border-color: var(--primary-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(156, 111, 111, 0.25);
+        }
+
+        .admin-nav {
+            background: var(--primary-lighter);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .nav-admin-item {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .nav-admin-item:hover, .nav-admin-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--primary-lighter);
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-darker);
+        }
+
+        .stats-label {
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Modal personalizado */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .custom-modal-title {
+            color: var(--primary-darker);
+            margin-bottom: 15px;
+        }
+
+        .custom-modal-buttons {
+            margin-top: 20px;
+        }
+
+        .badge-cita {
+            background-color: var(--info-color);
+        }
+
+        .badge-curso {
+            background-color: var(--warning-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 15px;
+            }
+            
+            .admin-card {
+                padding: 20px;
+            }
+            
+            .logo-navbar {
+                height: 45px;
+            }
+            
+            .logo-login {
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de login -->
+    <div id="login-screen" class="login-container">
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <img src="img/logotipo.jpg" alt="María Estela Sánchez" class="logo-login">
+                <h3>Panel de Administración</h3>
+            </div>
+            <form id="password-form">
+                <div class="mb-3">
+                    <label for="admin-password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="admin-password" placeholder="Ingresa la contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
+                </button>
+                <div id="login-error" class="alert alert-danger mt-3" style="display: none;">
+                    <i class="fas fa-exclamation-circle me-2"></i>Contraseña incorrecta
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panel de administración -->
+    <div id="admin-panel-content" style="display: none;">
+        <!-- Barra de navegación -->
+        <nav class="navbar navbar-expand-lg navbar-admin">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="img/logotipo.jpg" alt="María Estela Sánchez" class="logo-navbar">
+                    <span class="ms-2 text-white">Panel de Administración</span>
+                </a>
+                <div>
+                    <button class="btn btn-outline-light btn-sm me-2" id="change-password-btn">
+                        <i class="fas fa-key me-1"></i>Cambiar Contraseña
+                    </button>
+                    <button class="btn btn-danger btn-sm" id="logout-btn">
+                        <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="admin-container">
+            <!-- Header -->
+            <div class="admin-header">
+                <h1><i class="fas fa-cogs me-3"></i>Panel de Control</h1>
+                <p class="lead">Gestiona citas, cursos comprados y configuración del sistema</p>
+            </div>
+
+            
+
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- Navegación -->
+                    <div class="admin-card">
+                        <h4 class="section-title">Navegación</h4>
+                        <div class="nav-admin-item active" data-tab="citas-cursos">
+                            <i class="fas fa-calendar-check me-2"></i>Citas y Cursos Comprados
+                        </div>
+                        <div class="nav-admin-item" data-tab="bloquear">
+                            <i class="fas fa-ban me-2"></i>Bloquear Fechas
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <!-- Citas y Cursos Comprados -->
+                    <div class="admin-card tab-content active" id="tab-citas-cursos">
+                        <h3 class="section-title"><i class="fas fa-calendar-check me-2"></i>Citas y Cursos Comprados</h3>
+                        
+                        <!-- Filtros -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <select class="form-select" id="filter-type">
+                                    <option value="all">Todos los registros</option>
+                                    <option value="citas">Solo Citas</option>
+                                    <option value="cursos">Solo Cursos</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Buscar..." id="search-records">
+                            </div>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Cliente</th>
+                                        <th>Servicio/Curso</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="records-table">
+                                    <tr>
+                                        <td colspan="6" class="text-center">Cargando registros...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Bloquear Fechas -->
+                    <div class="admin-card tab-content" id="tab-bloquear">
+                        <h3 class="section-title"><i class="fas fa-ban me-2"></i>Bloquear Fechas</h3>
+                        <form id="block-date-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="block-date" class="form-label">Fecha a bloquear</label>
+                                        <input type="date" class="form-control" id="block-date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="block-reason" class="form-label">Motivo (opcional)</label>
+                                        <input type="text" class="form-control" id="block-reason" placeholder="Ej: Día festivo, vacaciones, etc.">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-ban me-2"></i>Bloquear Fecha
+                            </button>
+                            <div id="block-success" class="alert alert-success mt-3" style="display: none;">
+                                <i class="fas fa-check-circle me-2"></i>Fecha bloqueada exitosamente
+                            </div>
+                        </form>
+
+                        <h4 class="mt-4">Fechas Bloqueadas</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Motivo</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="blocked-dates-table">
+                                    <tr>
+                                        <td colspan="3" class="text-center">Cargando fechas bloqueadas...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mensajes -->
+    <div id="custom-alert-modal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h5 class="custom-modal-title" id="custom-modal-title">Mensaje</h5>
+            <p id="custom-modal-message">Hubo un error.</p>
+            <div class="custom-modal-buttons" id="custom-modal-buttons">
+                <button type="button" class="btn btn-primary" id="custom-modal-ok-btn">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar contraseña -->
+    <div id="change-password-modal" class="custom-modal">
+        <div class="custom-modal-content">
+            <h5 class="custom-modal-title">Cambiar Contraseña</h5>
+            <form id="change-password-form">
+                <div class="mb-3">
+                    <label for="current-password" class="form-label">Contraseña Actual</label>
+                    <input type="password" class="form-control" id="current-password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="new-password" class="form-label">Nueva Contraseña</label>
+                    <input type="password" class="form-control" id="new-password" minlength="6" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm-password" class="form-label">Confirmar Nueva Contraseña</label>
+                    <input type="password" class="form-control" id="confirm-password" minlength="6" required>
+                </div>
+                <div id="password-change-error" class="alert alert-danger mt-3" style="display: none;"></div>
+                <div class="custom-modal-buttons">
+                    <button type="button" class="btn btn-secondary me-2" id="cancel-password-change">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <!-- Script personalizado -->
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAW-2fH8qFFYiY-9_8gkpjGU-LM7qchqCc",
+            authDomain: "pagina-para-terapeuta.firebaseapp.com",
+            databaseURL: "https://pagina-para-terapeuta-default-rtdb.firebaseio.com",
+            projectId: "pagina-para-terapeuta",
+            storageBucket: "pagina-para-terapeuta.firebasestorage.app",
+            messagingSenderId: "638127291171",
+            appId: "1:638127291171:web:1e15bf14bea029afc1ea96",
+            measurementId: "G-W622BHY8HR"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Email de administrador
+        const ADMIN_EMAIL = "esthelasanchezaguirre@gmail.com";
+        // Contraseña de administrador
+        const ADMIN_PASSWORD = "ESTHELA SANCHEZ";
+
+        // Elementos del DOM
+        const loginScreen = document.getElementById('login-screen');
+        const adminPanel = document.getElementById('admin-panel-content');
+        const passwordForm = document.getElementById('password-form');
+        const loginError = document.getElementById('login-error');
+        const logoutBtn = document.getElementById('logout-btn');
+        const changePasswordBtn = document.getElementById('change-password-btn');
+        const changePasswordModal = document.getElementById('change-password-modal');
+        const cancelPasswordChange = document.getElementById('cancel-password-change');
+        const changePasswordForm = document.getElementById('change-password-form');
+        const passwordChangeError = document.getElementById('password-change-error');
+        const navItems = document.querySelectorAll('.nav-admin-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const recordsTable = document.getElementById('records-table');
+        const filterType = document.getElementById('filter-type');
+        const searchRecords = document.getElementById('search-records');
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            setupEventListeners();
+        });
+
+        // Verificar estado de autenticación
+        function checkAuthStatus() {
+            const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            if (isLoggedIn) {
+                showAdminPanel();
+                loadData();
+            } else {
+                showLoginScreen();
+            }
+        }
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            // Formulario de login
+            passwordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const password = document.getElementById('admin-password').value;
+                
+                // Verificar contraseña
+                if (password === ADMIN_PASSWORD) {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    showAdminPanel();
+                    loadData();
+                } else {
+                    loginError.style.display = 'block';
+                    setTimeout(() => {
+                        loginError.style.display = 'none';
+                    }, 3000);
+                }
+            });
+            
+            // Logout
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('adminLoggedIn');
+                showLoginScreen();
+            });
+            
+            // Cambiar contraseña
+            changePasswordBtn.addEventListener('click', function() {
+                changePasswordModal.style.display = 'flex';
+            });
+            
+            cancelPasswordChange.addEventListener('click', function() {
+                changePasswordModal.style.display = 'none';
+                changePasswordForm.reset();
+                passwordChangeError.style.display = 'none';
+            });
+            
+            changePasswordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const currentPassword = document.getElementById('current-password').value;
+                const newPassword = document.getElementById('new-password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                // Validaciones
+                if (currentPassword !== ADMIN_PASSWORD) {
+                    passwordChangeError.textContent = "La contraseña actual es incorrecta";
+                    passwordChangeError.style.display = 'block';
+                    return;
+                }
+                
+                if (newPassword !== confirmPassword) {
+                    passwordChangeError.textContent = "Las nuevas contraseñas no coinciden";
+                    passwordChangeError.style.display = 'block';
+                    return;
+                }
+                
+                if (newPassword.length < 6) {
+                    passwordChangeError.textContent = "La contraseña debe tener al menos 6 caracteres";
+                    passwordChangeError.style.display = 'block';
+                    return;
+                }
+                
+                // En una implementación real, aquí se actualizaría la contraseña en Firebase
+                showAlert('Éxito', 'Contraseña cambiada correctamente (en una implementación real)');
+                changePasswordModal.style.display = 'none';
+                changePasswordForm.reset();
+            });
+            
+            // Navegación entre pestañas
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Actualizar navegación
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Mostrar contenido correspondiente
+                    tabContents.forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+            
+            // Formulario para bloquear fechas
+            const blockDateForm = document.getElementById('block-date-form');
+            if (blockDateForm) {
+                blockDateForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const date = document.getElementById('block-date').value;
+                    const reason = document.getElementById('block-reason').value;
+                    
+                    if (date) {
+                        try {
+                            // En una implementación real, esto guardaría en Firestore
+                            showAlert('Éxito', 'Fecha bloqueada correctamente (en una implementación real)');
+                            
+                            // Mostrar mensaje de éxito
+                            const successAlert = document.getElementById('block-success');
+                            successAlert.style.display = 'block';
+                            setTimeout(() => {
+                                successAlert.style.display = 'none';
+                            }, 3000);
+                            
+                            // Limpiar formulario
+                            blockDateForm.reset();
+                            
+                        } catch (error) {
+                            console.error('Error al bloquear fecha:', error);
+                            showAlert('Error', 'No se pudo bloquear la fecha. Intenta nuevamente.');
+                        }
+                    }
+                });
+            }
+            
+            // Filtros y búsqueda
+            filterType.addEventListener('change', loadRecords);
+            searchRecords.addEventListener('input', loadRecords);
+        }
+
+        // Mostrar panel de administración
+        function showAdminPanel() {
+            loginScreen.style.display = 'none';
+            adminPanel.style.display = 'block';
+        }
+
+        // Mostrar pantalla de login
+        function showLoginScreen() {
+            loginScreen.style.display = 'flex';
+            adminPanel.style.display = 'none';
+            document.getElementById('admin-password').value = '';
+        }
+
+        // Cargar datos
+        function loadData() {
+            loadRecords();
+            loadBlockedDates();
+            loadStats();
+        }
+
+        // Cargar registros (citas y cursos)
+        async function loadRecords() {
+            try {
+                // En una implementación real, esto cargaría datos de Firestore
+                recordsTable.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">
+                            <i class="fas fa-database me-2"></i>No hay registros en la base de datos
+                            <br><small>Los datos reales se cargarán desde Firestore cuando existan</small>
+                        </td>
+                    </tr>
+                `;
+                
+            } catch (error) {
+                console.error('Error al cargar registros:', error);
+                recordsTable.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-danger">Error al conectar con la base de datos</td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Cargar fechas bloqueadas
+        async function loadBlockedDates() {
+            try {
+                // En una implementación real, esto cargaría datos de Firestore
+                const tableBody = document.getElementById('blocked-dates-table');
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            <i class="fas fa-database me-2"></i>No hay fechas bloqueadas
+                            <br><small>Los datos reales se cargarán desde Firestore cuando existan</small>
+                        </td>
+                    </tr>
+                `;
+                
+            } catch (error) {
+                console.error('Error al cargar fechas bloqueadas:', error);
+            }
+        }
+
+        // Cargar estadísticas
+        async function loadStats() {
+            try {
+                // En una implementación real, esto cargaría datos de Firestore
+                document.getElementById('total-citas').textContent = "0";
+                document.getElementById('citas-pendientes').textContent = "0";
+                document.getElementById('total-cursos').textContent = "0";
+                document.getElementById('ingresos-totales').textContent = "$0";
+                
+            } catch (error) {
+                console.error('Error al cargar estadísticas:', error);
+            }
+        }
+
+        // Funciones auxiliares
+        function getServiceName(serviceKey) {
+            const services = {
+                'hipnosis': 'Hipnosis Terapéutica',
+                'salud': 'Salud Integral',
+                'conexion': 'Conexión Espiritual'
+            };
+            return services[serviceKey] || serviceKey;
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function formatDisplayDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function showAlert(title, message) {
+            const modal = document.getElementById('custom-alert-modal');
+            const titleElement = document.getElementById('custom-modal-title');
+            const messageElement = document.getElementById('custom-modal-message');
+            
+            titleElement.textContent = title;
+            messageElement.textContent = message;
+            modal.style.display = 'flex';
+            
+            document.getElementById('custom-modal-ok-btn').onclick = function() {
+                modal.style.display = 'none';
+            };
+        }
+
+        // Cerrar modales al hacer clic fuera
+        document.getElementById('custom-alert-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        document.getElementById('change-password-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                changePasswordForm.reset();
+                passwordChangeError.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

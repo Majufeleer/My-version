@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>María Esthela Sánchez - Terapias Holísticas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="top-banner">
+        <img src="img/mar.gif" alt="Terapias Holísticas" class="header-gif">
+        <div class="header-overlay">
+            <h1>María Esthela Sánchez Aguirre</h1>
+            <p class="header-subtitle">Terapias en Línea</p> 
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="sidebar-container">
+            <nav class="sidebar">
+                <div class="nav-item active" data-section="inicio">
+                    <span class="nav-text">Inicio</span>
+                </div>
+                
+                <!-- Agendar Cita - Elemento principal con submenú -->
+                <div class="nav-item nav-parent" data-parent="agendar">
+                    <span class="nav-text">Servicios</span>
+                    <span class="nav-arrow">▶</span>
+                </div>
+                <div class="nav-submenu" id="submenu-agendar">
+                    <div class="nav-item sub-item" data-section="hipnosis">
+                        <span class="nav-text">Hipnosis</span>
+                    </div>
+                    <div class="nav-item sub-item" data-section="salud">
+                        <span class="nav-text">Salud Multidimensional</span>
+                    </div>
+                </div>
+
+                <!-- Curso - Elemento principal con submenú -->
+                <div class="nav-item nav-parent" data-parent="curso">
+                    <span class="nav-text">Curso</span>
+                    <span class="nav-arrow">▶</span>
+                </div>
+                <div class="nav-submenu" id="submenu-curso">
+                    <div class="nav-item sub-item" data-section="conexion">
+                        <span class="nav-text">Mantenimiento Espiritual</span>
+                    </div>
+                </div>
+
+                <div class="nav-item" data-section="citas">
+                    <span class="nav-text">Citas</span>
+                </div>
+                <div class="nav-item" data-section="contactos">
+                    <span class="nav-text">Contactos</span>
+                </div>
+            </nav>
+
+            <!-- Segundo Sidebar - Sabías que... DEBAJO de la navegación -->
+            <nav class="sabias-que-sidebar">
+                <div class="sabias-que-sidebar-block">
+                    <h4>👩‍⚕ La biodesprogramación evolutiva es una práctica alternativa que busca identificar y liberar conflictos emocionales o traumas inconscientes que, según esta corriente, pueden estar relacionados con enfermedades o situaciones repetitivas en la vida.</h4>
+                </div>
+                
+                <div class="sabias-que-sidebar-block">
+                    <h4 class="sabias-pregunta">🌟 ¿Sabías que las terapias holísticas ayudan a liberar bloqueos emocionales, permitiendo que la energía vital fluya libremente y mejorando tu salud general?</h4>
+                    <div class="sabias-respuesta">Los bloqueos emocionales pueden manifestarse como tensiones físicas, enfermedades recurrentes o patrones de comportamiento limitantes.</div>
+                </div>
+                
+                <div class="sabias-que-sidebar-block">
+                    <h4 class="sabias-pregunta">🌟 Algunos beneficios que se le atribuyen a la biodesprogramación evolutiva son:</h4>
+                    <div class="beneficios-lista">
+                        <div class="beneficio-item"> <strong>Liberación emocional:</strong> ayuda a reconocer y soltar emociones reprimidas que generan malestar.</div>
+                        <div class="beneficio-item"> <strong>Autoconocimiento:</strong> permite comprender el origen emocional de ciertos comportamientos o problemas.</div>
+                        <div class="beneficio-item"> <strong>Mejora del bienestar:</strong> al liberar cargas emocionales, se experimenta mayor tranquilidad y equilibrio interior.</div>
+                        <div class="beneficio-item"> <strong>Cambio de patrones repetitivos:</strong> favorece romper ciclos negativos heredados o aprendidos.</div>
+                        <div class="beneficio-item"> <strong>Crecimiento personal:</strong> impulsa la evolución interna y una conexión más consciente con uno mismo.</div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <main class="content-area">
+            
+         
+            <section id="inicio" class="content-section active text-center">
+                <h1 style="color: white; font-size: 2.5em; margin-bottom: 15px;">
+                    Aquí irá su frase
+                </h1>
+                <div class="images-header">
+                    <img src="img/sticker1.png" alt="Sticker 1" class="header-side-image">
+                    <h2 class="main-title">Servicios para tu paz interior</h2>
+                    <img src="img/sticker2.png" alt="Sticker 2" class="header-side-image">
+                </div>
+
+                <div class="info-page-content">
+                    <div class="info-block">
+                        <h3>¿Qué es la salud multidimensional?</h3>
+                        <p>La salud multidimensional es un enfoque holístico que considera la salud como un estado de bienestar integral, que va más allá de la ausencia de enfermedad y abarca diversas dimensiones interconectadas. Estas dimensiones incluyen la física, mental, emocional, social y espiritual, y el bienestar en cada una contribuye a la salud general. Un cambio en una dimensión puede afectar a las otras.</p>
+                        
+                        <h4>¿Por qué es importante la salud multidimensional?</h4>
+                        <ul>
+                            <li>Permite un entendimiento más completo de la salud que no se limita a lo biológico.</li>
+                            <li>Reconoce que las diferentes áreas de la vida están interconectadas y se influyen mutuamente.</li>
+                            <li>Promueve un bienestar general y una mejor calidad de vida al abordar todas las dimensiones de forma conjunta.</li>
+                        </ul>
+                        <div class="image-invocation-container">
+                            <img src="img/saludm.jpg" alt="Salud Multidimensional" class="service-invocation-image">
+                        </div>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>¿Qué es el Mantenimiento Espiritual?</h3>
+                        <p>El mantenimiento espiritual es un proceso continuo de cuidado y desarrollo del bienestar espiritual de una persona. Es el esfuerzo deliberado por cuidar el "jardín" de nuestra alma, mente y corazón, buscando vivir con atención y propósito, en lugar de pasar la vida en piloto automático. Busca vincular al individuo con algo más grande que uno mismo, ya sea la naturaleza, una deidad, la comunidad o su propio ser superior.</p>
+                        
+                        <h4>¿Para qué Sirve el Mantenimiento Espiritual?</h4>
+                        <p>Sirve para vivir una vida más plena, equilibrada y con sentido. Fomenta la Paz Interior ayudando a gestionar el estrés, la ansiedad y las crisis emocionales. Proporciona Propósito y Significado ayudando a responder preguntas existenciales y a encontrar una dirección clara en la vida. Mejora la Resiliencia fortaleciendo la capacidad para enfrentar y recuperarse de desafíos y adversidades. Nutre Relaciones Saludables ya que al estar mejor con uno mismo, se puede interactuar con los demás con más compasión y empatía. Promueve la Salud Integral debido a la fuerte conexión entre la salud espiritual, mental y física.</p>
+                        <div class="image-invocation-container">
+                            <img src="img/me.jpg" alt="Mantenimiento Espiritual" class="service-invocation-image">
+                        </div>
+                    </div>
+                    
+                    <div class="info-block">
+                        <h3>¿Qué es la Hipnosis?</h3>
+                        <p>La hipnosis es una herramienta terapéutica reconocida que sirve para facilitar cambios positivos en las percepciones, sensaciones, pensamientos y comportamientos de una persona. Es un estado de concentración focalizada y atención elevada que permite acceder al inconsciente para trabajar en diversos aspectos del bienestar.</p>
+                        
+                        <h4>¿Para qué Sirve la Hipnosis?</h4>
+                        <p>Sirve para el Manejo del Dolor ayudando a controlar el dolor crónico e incluso puede usarse como analgésico durante procedimientos médicos o dentales menores. Es eficaz para la Gestión de la Ansiedad y el Estrés induciendo un estado de relajación profunda que ayuda a reducir la ansiedad, el estrés y los síntomas de depresión. Permite la Superación de Fobias y Miedos mediante la desensibilización sistemática u otras técnicas, ayudando a reencuadrar experiencias traumáticas.</p>
+                        <div class="image-invocation-container">
+                            <img src="img/hipno.jpeg" alt="Hipnosis Terapéutica" class="service-invocation-image">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HIPNOSIS -->
+            <section id="hipnosis" class="content-section booking-page">
+                <div class="service-header">
+                    <img src="img/hipno.jpeg" alt="Hipnosis Terapéutica" class="service-image">
+                    <div class="service-info">
+                        <h2>Agendar Cita de Hipnosis</h2>
+                        <div class="price-tag">$1,850 MXN</div>
+                        <p style="margin-top: 10px; color: #666; font-style: italic;">Aquí va tu descripción del servicio de hipnosis</p>
+                    </div>
+                </div>
+                <div class="booking-content">
+                    <div class="booking-section">
+                        <h3>Detalles y Reserva</h3>
+                        <div id="form-hipnosis"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SALUD -->
+            <section id="salud" class="content-section booking-page">
+                <div class="service-header">
+                    <img src="img/saludm.jpg" alt="Salud Multidimensional" class="service-image">
+                    <div class="service-info">
+                        <h2>Agendar Cita de Salud Multidimensional</h2>
+                        <div class="price-tag">$2,500 MXN</div>
+                        <p style="margin-top: 10px; color: #666; font-style: italic;">Aquí va tu descripción del servicio de salud multidimensional</p>
+                    </div>
+                </div>
+                <div class="booking-content">
+                    <div class="booking-section">
+                        <h3>Detalles y Reserva</h3>
+                        <div id="form-salud"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONEXIÓN (ahora es un curso) -->
+            <section id="conexion" class="content-section booking-page">
+                <div class="service-header">
+                    <img src="img/me.jpg" alt="Mantenimiento Espiritual" class="service-image">
+                    <div class="service-info">
+                        <h2>Curso de Mantenimiento Espiritual</h2>
+                        <div class="price-tag">$3,500 MXN</div>
+                        <p style="margin-top: 10px; color: #666; font-style: italic;">Aquí va tu descripción del curso de mantenimiento espiritual</p>
+                    </div>
+                </div>
+                <div class="booking-content">
+                    <div class="booking-section">
+                        <h3>Detalles y Compra</h3>
+                        <div id="form-conexion"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CITAS -->
+            <section id="citas" class="content-section">
+                <div class="citas-header">
+                    <h2>Citas programadas</h2>
+                    <p>Aquí se mostrarán las citas agendadas y confirmadas en un formato de calendario semanal.</p>
+                </div>
+                <div class="calendar-container">
+                    <div id="weekly-calendar" class="weekly-calendar">
+                        
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CONTACTOS -->
+            <section id="contactos" class="content-section">
+                <div class="citas-header">
+                    <h2>Información de Contacto</h2>
+                </div>
+                <div class="contactos-content info-block">
+                    <p>Si tienes dudas o necesitas más información, no dudes en contactarme:</p>
+                    <div class="contact-item info-card">
+                        <span class="whatsapp-text">WhatsApp</span>
+                        <strong>:</strong> 6421046446
+                    </div>
+                    <div class="contact-item info-card">
+                        <strong>Email:</strong> esthelasanchezaguirre@gmail.com
+                    </div>
+                    
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <p>Para desarrollar tu página contáctame: 
+            <a href="mailto:bjosealfredo99@gmail.com">bjosealfredo99@gmail.com</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
